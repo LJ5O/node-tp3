@@ -1,10 +1,10 @@
 
+
 # TP n°3: Maintenance et documentation d'une application
 
 Dans ce tp, vous aller apprendre à:
 - Documenter votre code avec jsdoc
 - Faire des tests unitaires basiques
-- Travailler en mode "Test Driven Development" (TDD)
 
 ## 1. Documenter son application
 
@@ -21,7 +21,7 @@ Il existe différentes manière de documenter son application:
 
 La documentation est un exercice important mais qui peut prendre énormément de temps. Il n'est donc pas rare que cet aspect soit relégué au second plan, ce qui peut poser des problèmes (documentation manquante, non mise à jour, etc..). 
 
-Pour éviter cela, une bonne pratique est de documenter son application au fur et à mesure plutôt que de le faire en un seul coup.  De nombreux outils existent pour faciliter la documentation d'une application. Dans notre cas, nous allons utiliser [jsdoc](https://www.npmjs.com/package/jsdoc) et [swagger](https://swagger.io/).
+Pour éviter cela, une bonne pratique est de documenter son application au fur et à mesure plutôt que de le faire en un seul coup.  De nombreux outils existent pour faciliter la documentation d'une application. Dans notre cas, nous allons utiliser [jsdoc](https://www.npmjs.com/package/jsdoc).
 
 A noter que ce que nous faisons dans ce tp correspond à de la documentation purement technique. Une application doit également avoir une documentation fonctionnelle (qui n'est pas forcement maintenue par les développeurs).
 
@@ -116,13 +116,22 @@ Dans ce repos, vous trouverez plusieurs fichiers dont products.json, users.json 
 Ces fichiers contiennent des informations que nous utiliserons dans le cadre de ce tp.
 
 Lire et essayer de comprendre le contenu du dossier src/\_\_tests\_\_
+
 Lancer les tests unitaires
+
 Implémenter les fonctions du fichier maths.js pour que les tests unitaires passent.
+
 Implémenter les fonctions du fichier shop.js pour que les tests unitaires passent.
 
-Ecrivez et testez les fonctionnalités suivantes:
+Ce que vous venez de faire correspond à du Test Driven Development. Cette pratique consiste à écrire des tests unitaires avant d'écrire sa fonction. Cela permet de bien réfléchir à l'ensemble des cas possible et de traiter toutes les erreurs potentielles.
 
-1. Ecrire une fonction qui retourne la liste des numéros de téléphone des utilisateurs de plus de 50 ans 
+
+
+Ecrivez les fonctions et les tests unitaires associés suivants en prenant en compte le plus de cas de tests possible:
+*Prenez en compte le plus de cas de tests possible et n'oubliez pas votre jsdoc !*
+
+1. Ecrire une fonction qui retourne la liste des numéros de téléphone des utilisateurs de plus de 50 ans.
+
 2. Ecrire une fonction qui pour chaque catégorie de produits, retourne les informations suivantes:
 - Le libellé
 - Le stock (si le stock d'un objet est inférieur à 10 on affiche"low", si il est entre 10 et 50 on affiche"meduim", si il est supérieur à 50, on affiche "high"
@@ -143,23 +152,25 @@ Exemple:
 
 ```
 
+3. Ecrire une fonction prenant un id de produit en paramètre et qui retourne la liste des ids des utilisateurs ayant acheté le produit. 
+Si aucun utilisateur n'a acheté le produit, retourner le message suivant: "Ce produit n'est présent dans aucun panier".
 
+4. Ecrire une fonction qui prend un id utilisateur en paramètre et qui retourne le prix total et le prix total "discount" de son (ou ses) panier(s). Si l'utilisateur ne possède pas de panier, retourner son adresse mail. Si le prix total dépasse 1000€, retourner également son adresse mail.
 
-/*
-un item en param, liste des ids des utils ayant acheté cet item
-si personne, retourner un message
-*/
+```
+ [{idPanier:"toto", total:100, totalDiscounted: 90}]
+ OU
+  [{idPanier:"toto", total:100, totalDiscounted: 90, mail:"fakemail"}]
+```
 
-/* a partir d'un id util, retourner [{idPanier:"toto", total:100, totalDiscounted: 90}], 
-si total => 200 ajouter numéro de tel
-si pas de panier, reoutner l'email (verifier le format)
-*/
+5. Ecrire une fonction qui prend un id utilisateur en paramètre:
+ 
+- Si le client a entre 0 et 17: Throw une erreur car le site n'est pas ouvert aux mineurs.
 
-/* prend un util en param
-si id client pas dans le json, erreur
-si il a entre 0 et 17 ans => retourne une erreur site majeur
-si il a entre 18 et 25 => retourne la liste des items les produits qui font la plus grosse eco prix - (prix * reduc / 100)
-si il a entre 26 et 50 ans => retourne la liste des produits avec une note de plus de 4.8
-si il a plus de 50 ans => retourne la liste des produits de categ smartphones
+- Si le client a entre 18 et 25: Retourner la liste des 10 produits sur lesquels on fait la plus grosse économie (différence prix et prix discount).
 
-*/
+- Si le client a entre 26 et 50: Retourner la liste des produits avec une note supérieure à 4,7.
+
+- Si le client a plus de 50 ans: Retourner la liste des produits appartenant à la catégorie "smartphone".
+
+Si l'utilisateur est majeur et que la date d'aujourd'hui correspond à son anniversaire, retourner également son adresse mail.
