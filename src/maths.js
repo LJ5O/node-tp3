@@ -6,6 +6,7 @@
  */
 function addition(a, b) {
   // implentez la fonction
+  if(typeof(a)!='number' || typeof(b)!='number')throw("Mauvais type!");
   return a+b;
 }
 
@@ -17,7 +18,9 @@ function addition(a, b) {
  */
 function quotient(a, b) {
   // implentez la fonction
-  return a*b;
+  if(typeof(a)!='number' || typeof(b)!='number')throw("Mauvais type!");
+  if(b==0)throw("Il est impossible de diviser par 0!");
+  return a/b;
 }
 
 module.exports = {
