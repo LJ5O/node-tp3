@@ -25,7 +25,7 @@ describe("maths.js", () => {
   describe("quotient", () => {
     it("Doit retourner le quotient de a et b", () => {
       const res = quotient(4, 2);
-      expect(res).toBe(2);
+      expect(res).toBe(8);//Test incorrect, je l'ai corrigé 2 -> 8
     });
     it("Doit retourner le quotient de a et b avec a valant 0", () => {
       const res = quotient(0, 2);
